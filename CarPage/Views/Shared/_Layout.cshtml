@@ -3,16 +3,56 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CarPage</title>
+    <title>@ViewData["Title"] - CarProjectIIS</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/CarPage.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CarProjectIIS.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            background-image: url('/images/background.jpg'); /* Замените путь на актуальный путь к вашему изображению */
+            background-size: cover; /* Растягивание изображения, чтобы покрыть весь фон */
+            background-repeat: no-repeat; /* Запрет повторения изображения */
+            background-attachment: fixed; /* Фиксация фона при прокрутке */
+        }
+
+        .navbar {
+            background-image: url('/images/free-nature-images.jpg'); /* Путь к изображению заднего фона */
+            background-size: cover; /* Растянуть изображение на весь экран */
+            background-repeat: no-repeat; /* Запретить повторение изображения */
+            color: #fff; /* Цвет текста */
+        }
+
+            /* Стили для ссылок в навигационной панели */
+            .navbar a {
+                color: #fff; /* Цвет текста ссылок */
+            }
+
+                /* Стили для активной ссылки */
+                .navbar a.active {
+                    font-weight: bold; /* Жирный текст для активной ссылки */
+                }
+    </style>
+    <style>
+        body {
+            font-family: 'Your Preferred Font', sans-serif; /* Замените 'Your Preferred Font' на выбранный вами шрифт */
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Your Preferred Heading Font', sans-serif; /* Замените 'Your Preferred Heading Font' на выбранный вами шрифт для заголовков */
+        }
+
+        /* Дополнительные стили для текста, если необходимо */
+        p, span, div {
+            font-size: 16px; /* Размер текста */
+            color: #333; /* Цвет текста */
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CarPage</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CarProjectIIS</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -25,20 +65,30 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="CarItem" asp-action="Index">List</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        @* <main role="main" class="pb-3">
+        @RenderBody()
+        </main> *@
+        <div class="pb-3">
+            @RenderSection("title")
+            <hr />
+        </div>
+        <div class="pb-3 mb-5">
             @RenderBody()
-        </main>
+        </div>
     </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - CarPage - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2024 - CarProjectIIS - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

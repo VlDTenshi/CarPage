@@ -1,0 +1,83 @@
+﻿@model IEnumerable<CarPage.Models.Caritems.CarItemViewModel>
+@section title {
+    <h1>Welcome to the page of Cars</h1>
+}
+@{
+    int rowNumber = 1;
+}
+
+<div>
+    <a asp-action="create" asp-controller="caritem" class="btn btn-primary">Create</a>
+</div>
+
+<form method="post">
+    <table class=" table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nr</th>
+                <th scope="col">Name</th>
+                <th scope="col">ShortDesc</th>
+                <th scope="col">LongDesc</th>
+                <th scope="col">Price</th>
+                <th scope="col">isFavorite</th>
+                <th scope="col">available</th>
+
+
+
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var caritem in Model)
+            {
+                <tr>
+                    <td>@rowNumber</td>
+
+                    <td>@caritem.Name</td>
+                    <td>@caritem.ShortDesc</td>
+                    <td>@caritem.LongDesc</td>
+                    <td>@caritem.Price</td>
+                    <td>
+                        @if (caritem.isFavorite.HasValue)
+                        {
+                            @((caritem.isFavorite.Value) ? "Yes" : "No")
+                        }
+                        else
+                        {
+                            <text>N/A</text>
+                        }
+                    </td>
+                    <td>
+                        @if (caritem.available.HasValue)
+                        {
+                            @((caritem.available.Value) ? "Yes" : "No")
+                        }
+                        else
+                        {
+                            <text>N/A</text>
+                        }
+                    </td>
+
+
+
+                    <td>
+                        <a asp-action="Details" asp-controller="caritem" asp-route-id="@caritem.Id" class="btn btn-info">Details</a>
+                        <a asp-action="Update" asp-controller="caritem" asp-route-id="@caritem.Id" class="btn btn-primary">Update</a>
+                        <a asp-action="Delete" asp-controller="caritem" asp-route-id="@caritem.Id" class="btn btn-danger">Delete</a>
+
+                    </td>
+                </tr>
+                rowNumber += 1;
+            }
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+</form>

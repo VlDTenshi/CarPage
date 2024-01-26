@@ -1,0 +1,8 @@
+﻿@model CarPage.Models.Caritems.ImageToDatabaseViewModel
+@section title {
+    <h1>Choose the picture for car</h1>
+}
+<div class="form btn-group row col-sm-4 offset-2">
+    <div>@Model.ImageTitle</div>
+    <img class="card-img-top" src="@Model.Image" asp-append-version="true" />
+</div>

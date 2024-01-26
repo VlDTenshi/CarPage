@@ -1,8 +1,19 @@
+using CarPage.ApplicationServices.Services;
+using CarPage.Core.ServiceInterface;
+using CarPage.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddScoped<IFileServices, FileServices>();
+builder.Services.AddScoped<ICarItemServices, CarItemServices>();
+builder.Services.AddRazorPages();
+builder.Services.AddDbContext<CarContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+    b => b.MigrationsAssembly("CarPage.Data")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -19,7 +30,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
+app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
